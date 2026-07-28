@@ -1,0 +1,29 @@
+FORMULÁRIO — TESTE LOCAL E VERCEL
+================================
+
+E-mail que receberá os testes:
+rspalmaetec@gmail.com
+
+TESTE NO COMPUTADOR
+1. Abra o terminal na pasta do projeto.
+2. Execute: pnpm install
+3. Execute: pnpm dev
+4. Abra: http://localhost:3000
+5. Preencha o formulário e clique em "Quero receber minha cotação".
+6. No primeiro envio, abra rspalmaetec@gmail.com e clique no link de ativação enviado pelo FormSubmit.
+7. Envie novamente e confira se o pedido chegou.
+
+PUBLICAÇÃO NO VERCEL
+1. Envie esta pasta para um novo repositório do GitHub.
+2. Importe o repositório no Vercel usando as configurações automáticas do Next.js.
+3. Não altere o Build Command nem o Output Directory.
+4. Depois da publicação, abra o endereço gerado pelo Vercel.
+5. Envie o formulário uma vez.
+6. Caso chegue uma nova ativação do FormSubmit, confirme-a no e-mail.
+7. Envie novamente para validar o recebimento.
+
+VARIÁVEL OPCIONAL NO VERCEL
+Nome: LEAD_DESTINATION_EMAIL
+Valor: rspalmaetec@gmail.com
+
+O projeto já possui esse e-mail como destino padrão, portanto a variável é opcional durante os testes.

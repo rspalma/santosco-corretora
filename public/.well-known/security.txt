@@ -1,0 +1,4 @@
+Contact: mailto:contato@santoscocorretora.com.br
+Canonical: https://santoscocorretora.com.br/.well-known/security.txt
+Preferred-Languages: pt-BR, en
+Expires: 2027-07-14T23:59:59.000Z

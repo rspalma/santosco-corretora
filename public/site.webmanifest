@@ -1,0 +1,13 @@
+{
+  "name": "SantosCo Corretora",
+  "short_name": "SantosCo",
+  "description": "Seguros personalizados com atendimento humano e consultivo.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#071b2c",
+  "theme_color": "#071b2c",
+  "icons": [
+    { "src": "/images/app-icon.png?v=104", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/images/apple-touch-icon.png?v=104", "sizes": "180x180", "type": "image/png", "purpose": "any" }
+  ]
+}

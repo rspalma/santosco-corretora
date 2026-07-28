@@ -1,0 +1,45 @@
+SANTOS CO. PREMIUM 10.3 - INSTALACAO NO WINDOWS
+================================================
+
+O Visual Studio Code nao sera reinstalado.
+
+PRIMEIRA VEZ
+------------
+1. Extraia todo o ZIP para uma pasta normal, por exemplo:
+   C:\Projetos\santos-co-main
+
+2. Abra a pasta extraida.
+
+3. Clique duas vezes em:
+   INSTALAR_TUDO.bat
+
+4. Aceite as permissoes do Windows quando forem solicitadas.
+
+O instalador prepara automaticamente:
+- Git
+- Node.js 22.x
+- pnpm 10.14.0
+- bibliotecas do projeto
+- arquivo .env.local
+
+PARA ABRIR O SITE NOS PROXIMOS DIAS
+------------------------------------
+Clique duas vezes em:
+INICIAR_SITE.bat
+
+O VS Code sera aberto e o site ficara disponivel em:
+http://localhost:3000
+
+Para encerrar o site, volte para a janela preta e pressione CTRL+C.
+
+VERIFICACAO COMPLETA
+--------------------
+Para executar lint, TypeScript, testes e build, use:
+VERIFICAR_PROJETO.bat
+
+PROBLEMAS
+---------
+O relatorio detalhado fica salvo no arquivo:
+instalacao-santos-co.log
+
+Nao execute o projeto diretamente de dentro do ZIP. Extraia tudo primeiro.

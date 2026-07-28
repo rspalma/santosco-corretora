@@ -1,0 +1,30 @@
+server {
+  listen 443 ssl http2;
+  server_name santoscocorretora.com.br www.santoscocorretora.com.br;
+
+  root /var/www/santos-co/out;
+  index index.html;
+
+  location = /viagem {
+    return 301 /viagens/;
+  }
+
+  location / {
+    try_files $uri $uri.html $uri/ =404;
+  }
+
+  location ~* \.(?:avif|css|gif|ico|jpe?g|js|mp4|png|svg|webm|webp|woff2?)$ {
+    expires 7d;
+    add_header Cache-Control "public, max-age=604800, stale-while-revalidate=86400";
+  }
+
+  add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' https://formsubmit.co; media-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src 'none'; frame-ancestors 'none'; manifest-src 'self'; worker-src 'self' blob:; upgrade-insecure-requests" always;
+  add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+  add_header X-Content-Type-Options "nosniff" always;
+  add_header X-Frame-Options "DENY" always;
+  add_header X-XSS-Protection "0" always;
+  add_header Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()" always;
+  add_header Cross-Origin-Opener-Policy "same-origin" always;
+  add_header Cross-Origin-Resource-Policy "same-origin" always;
+  add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+}
