@@ -4,26 +4,30 @@ FORMULÁRIO — TESTE LOCAL E VERCEL
 E-mail que receberá os testes:
 rspalmaetec@gmail.com
 
+COMO O ENVIO FUNCIONA
+O navegador envia os dados diretamente ao endpoint AJAX oficial do FormSubmit.
+Não depende de uma rota /api do Vercel e usa a mesma integração no localhost,
+no endereço *.vercel.app e no domínio definitivo.
+
 TESTE NO COMPUTADOR
 1. Abra o terminal na pasta do projeto.
 2. Execute: pnpm install
 3. Execute: pnpm dev
 4. Abra: http://localhost:3000
 5. Preencha o formulário e clique em "Quero receber minha cotação".
-6. No primeiro envio, abra rspalmaetec@gmail.com e clique no link de ativação enviado pelo FormSubmit.
+6. No primeiro envio, abra rspalmaetec@gmail.com, inclusive Spam, e confirme a ativação enviada pelo FormSubmit.
 7. Envie novamente e confira se o pedido chegou.
 
 PUBLICAÇÃO NO VERCEL
-1. Envie esta pasta para um novo repositório do GitHub.
-2. Importe o repositório no Vercel usando as configurações automáticas do Next.js.
-3. Não altere o Build Command nem o Output Directory.
-4. Depois da publicação, abra o endereço gerado pelo Vercel.
-5. Envie o formulário uma vez.
-6. Caso chegue uma nova ativação do FormSubmit, confirme-a no e-mail.
-7. Envie novamente para validar o recebimento.
+1. Envie esta versão para o repositório do GitHub.
+2. Aguarde o Vercel publicar automaticamente o novo commit.
+3. Abra o endereço gerado pelo Vercel em uma janela anônima.
+4. Atualize com Ctrl+F5 para evitar o JavaScript antigo em cache.
+5. Envie o formulário.
+6. Caso chegue uma ativação do FormSubmit, confirme-a e envie novamente.
 
 VARIÁVEL OPCIONAL NO VERCEL
-Nome: LEAD_DESTINATION_EMAIL
-Valor: rspalmaetec@gmail.com
+Nome: NEXT_PUBLIC_LEAD_FORM_ENDPOINT
+Valor: https://formsubmit.co/ajax/rspalmaetec@gmail.com
 
-O projeto já possui esse e-mail como destino padrão, portanto a variável é opcional durante os testes.
+O código já possui esse valor como padrão. A variável só é necessária para trocar o endpoint futuramente.

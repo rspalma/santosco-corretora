@@ -84,7 +84,7 @@ NEXT_PUBLIC_GTM_ID=
 NEXT_PUBLIC_GA_MEASUREMENT_ID=
 NEXT_PUBLIC_META_PIXEL_ID=
 NEXT_PUBLIC_CLARITY_ID=
-LEAD_DESTINATION_EMAIL=rspalmaetec@gmail.com
+NEXT_PUBLIC_LEAD_FORM_ENDPOINT=https://formsubmit.co/ajax/rspalmaetec@gmail.com
 LEAD_ALLOWED_ORIGINS=
 NEXT_PUBLIC_GOOGLE_RATING=
 NEXT_PUBLIC_GOOGLE_REVIEW_COUNT=
@@ -93,7 +93,7 @@ NEXT_PUBLIC_GOOGLE_REVIEWS_URL=
 
 Quando alguma ferramenta opcional está configurada, o site exibe o aviso de consentimento e só carrega os scripts após a aceitação.
 
-O formulário envia os dados para `/api/lead`, que funciona no `localhost`, nos endereços temporários do Vercel e no domínio final. O destino padrão de teste é `rspalmaetec@gmail.com`; para trocar depois, altere `LEAD_DESTINATION_EMAIL`. Na primeira utilização de cada origem, faça um envio e confirme o e-mail de ativação recebido do FormSubmit.
+O formulário usa o endpoint AJAX oficial do FormSubmit diretamente no navegador. Assim, o mesmo código funciona no `localhost`, nos endereços temporários do Vercel, em exportação estática e no domínio final. O destino padrão de teste é `rspalmaetec@gmail.com`; para trocar futuramente, altere `NEXT_PUBLIC_LEAD_FORM_ENDPOINT`. No primeiro envio, confirme o e-mail de ativação recebido do FormSubmit.
 
 Evite configurar Google Analytics diretamente e também dentro do Google Tag Manager ao mesmo tempo, para não duplicar eventos.
 

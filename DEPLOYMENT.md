@@ -22,7 +22,7 @@ NEXT_PUBLIC_GTM_ID=
 NEXT_PUBLIC_GA_MEASUREMENT_ID=
 NEXT_PUBLIC_META_PIXEL_ID=
 NEXT_PUBLIC_CLARITY_ID=
-LEAD_DESTINATION_EMAIL=rspalmaetec@gmail.com
+NEXT_PUBLIC_LEAD_FORM_ENDPOINT=https://formsubmit.co/ajax/rspalmaetec@gmail.com
 LEAD_ALLOWED_ORIGINS=
 NEXT_PUBLIC_GOOGLE_RATING=
 NEXT_PUBLIC_GOOGLE_REVIEW_COUNT=
@@ -31,7 +31,7 @@ NEXT_PUBLIC_GOOGLE_REVIEWS_URL=
 
 As ferramentas de marketing são opcionais. Quando configuradas, elas só são carregadas após o consentimento do visitante.
 
-O formulário usa a rota `/api/lead` e encaminha o pedido pelo FormSubmit. O endereço de teste é `rspalmaetec@gmail.com`. Faça um envio no endereço publicado e confirme a ativação recebida por e-mail. A rota reconhece automaticamente `localhost`, URLs `*.vercel.app` e o domínio acessado. A exportação estática não inclui a API e deve usar uma integração externa própria.
+O formulário envia os pedidos diretamente pelo endpoint AJAX oficial do FormSubmit. O endereço de teste é `rspalmaetec@gmail.com`. Faça um envio no endereço publicado e confirme a ativação recebida por e-mail. O mesmo código funciona em `localhost`, URLs `*.vercel.app`, domínio definitivo e exportação estática.
 
 Não configure o mesmo Google Analytics diretamente e também pelo Google Tag Manager, pois isso pode duplicar pageviews e conversões.
 
@@ -64,7 +64,7 @@ O conteúdo final estará em `out/`. Faça backup do `public_html` atual antes d
 - O script copia um `.htaccess` para `out`, mas o servidor precisa utilizar Apache e permitir as diretivas.
 - Em Nginx, use a configuração do servidor em vez do `.htaccess`.
 - O funil oferece WhatsApp imediato e envio assíncrono por um serviço externo de formulários.
-- O envio padrão depende da ativação do FormSubmit e de conectividade com o domínio permitido na CSP.
+- O envio depende da ativação inicial do FormSubmit e de conectividade do navegador com `https://formsubmit.co`, já permitido na CSP.
 - CRM próprio, banco de leads ou autenticação exigem API e infraestrutura específicas.
 
 ## Checklist de migração sem indisponibilidade

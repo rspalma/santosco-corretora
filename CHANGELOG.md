@@ -1,3 +1,10 @@
+## 10.4.2 — Correção do envio no Vercel
+
+- envio do formulário alterado para o endpoint AJAX oficial do FormSubmit diretamente pelo navegador;
+- compatibilidade mantida entre `localhost`, domínios temporários do Vercel e domínio definitivo;
+- resposta de primeira ativação agora é exibida como orientação, sem falso erro vermelho;
+- destino de teste mantido em `rspalmaetec@gmail.com`.
+
 # Changelog
 
 ## 10.3.0 — 2026-07-20

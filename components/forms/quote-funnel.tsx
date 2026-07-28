@@ -20,7 +20,7 @@ type ProtectionId = "auto" | "vida" | "empresa" | "rc" | "viagem";
 type SubmitStatus = "idle" | "sending" | "success" | "error";
 
 type LeadApiResponse = {
-  success?: boolean;
+  success?: boolean | string;
   message?: string;
 };
 type LeadChannel = "callback" | "whatsapp";
@@ -31,6 +31,13 @@ type ProtectionOption = {
   icon: typeof Car;
   message: string;
 };
+
+const DEFAULT_LEAD_FORM_ENDPOINT =
+  "https://formsubmit.co/ajax/rspalmaetec@gmail.com";
+
+const leadFormEndpoint =
+  process.env.NEXT_PUBLIC_LEAD_FORM_ENDPOINT?.trim() ||
+  DEFAULT_LEAD_FORM_ENDPOINT;
 
 const protections: readonly ProtectionOption[] = [
   {
@@ -165,7 +172,12 @@ export function QuoteFunnel() {
     setFeedbackMessage("");
 
     try {
-      const response = await fetch("/api/lead", {
+      /*
+       * O envio é feito diretamente pelo navegador para o endpoint AJAX
+       * oficial do FormSubmit. Isso evita bloqueios de chamadas servidor a
+       * servidor no Vercel e mantém o mesmo comportamento no localhost.
+       */
+      const response = await fetch(leadFormEndpoint, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -173,10 +185,15 @@ export function QuoteFunnel() {
         },
         body: JSON.stringify({
           nome: normalizedName,
-          telefone: normalizedPhone,
-          seguro: protectionId,
-          consentimento: consent,
-          website,
+          whatsapp: formatPhone(normalizedPhone),
+          interesse: selectedProtection.message,
+          origem: window.location.href,
+          consentimento: "Autorizado",
+          _subject: `Novo lead pelo site: ${selectedProtection.message}`,
+          _template: "table",
+          _url: window.location.href,
+          _captcha: "false",
+          _honey: website,
         }),
       });
 
@@ -184,9 +201,24 @@ export function QuoteFunnel() {
         | LeadApiResponse
         | null;
 
-      if (!response.ok || data?.success === false) {
+      const providerMessage = data?.message?.trim() || "";
+      const normalizedProviderMessage = providerMessage.toLowerCase();
+      const activationRequired =
+        normalizedProviderMessage.includes("activat") ||
+        normalizedProviderMessage.includes("confirm") ||
+        normalizedProviderMessage.includes("verif");
+      const providerReportedFailure =
+        data?.success === false || data?.success === "false";
+
+      /*
+       * No primeiro envio, o FormSubmit pode responder que a ativação ainda
+       * precisa ser confirmada. A solicitação já foi registrada e o e-mail de
+       * confirmação foi disparado, portanto isso é mostrado como orientação,
+       * e não como falha do formulário.
+       */
+      if (!response.ok || (providerReportedFailure && !activationRequired)) {
         throw new Error(
-          data?.message ||
+          providerMessage ||
             "Não foi possível enviar agora. Revise os dados ou use o WhatsApp.",
         );
       }
@@ -194,8 +226,10 @@ export function QuoteFunnel() {
       trackLeadIntent(selectedProtection.message, "callback");
       setStatus("success");
       setFeedbackMessage(
-        data?.message ||
-          "Recebemos seus dados. A equipe entrará em contato pelo WhatsApp informado.",
+        activationRequired
+          ? "Pedido registrado. Abra o e-mail rspalmaetec@gmail.com e confirme a ativação do formulário; depois faça mais um teste."
+          : providerMessage ||
+              "Recebemos seus dados. A equipe entrará em contato pelo WhatsApp informado.",
       );
       setName("");
       setPhone("");
@@ -234,6 +268,23 @@ export function QuoteFunnel() {
       </div>
 
       <form className="mt-6" onSubmit={handleCallback}>
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -left-[10000px] h-px w-px overflow-hidden"
+        >
+          <label>
+            Não preencha este campo
+            <input
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              value={website}
+              onChange={(event) => setWebsite(event.target.value)}
+            />
+          </label>
+        </div>
+
         <fieldset>
           <legend className="sr-only">Tipo de seguro desejado</legend>
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-5">
