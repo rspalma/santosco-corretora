@@ -228,8 +228,7 @@ export function QuoteFunnel() {
       setFeedbackMessage(
         activationRequired
           ? "Pedido registrado. Abra o e-mail rspalmaetec@gmail.com e confirme a ativação do formulário; depois faça mais um teste."
-          : providerMessage ||
-              "Recebemos seus dados. A equipe entrará em contato pelo WhatsApp informado.",
+        : "Formulário enviado com sucesso! Em breve, nossa equipe entrará em contato pelo WhatsApp informado.",
       );
       setName("");
       setPhone("");
